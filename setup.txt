@@ -1,0 +1,57 @@
+
+After cloning the boiler plate, following changes to be made:
+
+1. Run on cmd
+---
+wget https://raw.githubusercontent.com/joshsoftware/golang-boilerplate/master/install.sh
+---
+
+2. Run on cmd
+---
+. ./install.sh -p package_name
+---
+use package_name of your choice, eg santoshkavhar/go-e-commerce)
+This package_name change has to be reflected in entire app
+
+3. Change credentials in application.yml
+	APP_NAME: "e-commerce"
+	DB_URI: "postgresql://testuser:password@localhost:5432/dbname?sslmode=disable"
+	
+4. Settings for postgres
+	(OR Refer internet for below steps execution)
+	1. Create new user in postgres database with name user as 'testuser' and password as 'password'
+			# Create a new PostgreSQL user called testuser, allow user to login, but NOT creating databases
+			$ sudo -u postgres createuser --login --pwprompt testuser
+			Enter password for new role: password
+
+			# Create a new database called Commerce, owned by testuser.
+			$ sudo -u postgres createdb --owner=testuser Commerce
+	2. Logging postgres user steps
+		 psql -U testuser Commerce
+		 \d   (list tables, before migrations it will be empty)
+
+5. Change all import instances of joshsoftware/golang-biolerplate to your package_name
+
+6. Run on cmd
+---
+go build
+---
+
+7. Run on cmd
+---
+./(your package_name) migrate
+---
+
+8. Run on cmd
+---
+./(your package_name) start
+---
+
+9. Open Postman and use GET Request and type
+---
+localhost:(port_number)/users
+---
+In headers tab include below fields
+key : Accept
+value : application/vnd.(package_name).v1
+

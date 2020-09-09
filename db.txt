@@ -1,12 +1,11 @@
-
 psql -U keshav Commerce
 sudo -u postgres psql
 
-CREATE TABLE IF NOT EXISTS products(id INT NOT NULL PRIMARY KEY, name varchar(50) NOT NULL, description varchar(200) NOT NULL, price float NOT NULL, discount float NOT NULL, quantity INT NOT NULL, category_id INT NOT NULL, FOREIGN KEY(category_id) REFERENCES category(id) ON DELETE CASCADE );
+CREATE TABLE IF NOT EXISTS products(id INT NOT NULL PRIMARY KEY, name varchar(50) NOT NULL, description varchar(200) NOT NULL, price float NOT NULL, discount float NOT NULL, quantity INT NOT NULL, category_id INT NOT NULL, FOREIGN KEY(category_id) REFERENCES category(id) ON DELETE CASCADE ON UPDATE CASCADE );
 
 CREATE TABLE IF NOT EXISTS category(id INT NOT NULL PRIMARY KEY, name varchar(50) NOT NULL, description varchar(200) NOT NULL);
 
-CREATE TABLE IF NOT EXISTS productImage(product_id INT NOT NULL, url varchar(20) NOT NULL, description varchar(200) NOT NULL, FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE);
+CREATE TABLE IF NOT EXISTS productImages(product_id INT NOT NULL, url varchar(20) NOT NULL, description varchar(200) NOT NULL, FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE  ON UPDATE CASCADE);
 
 
 INSERT INTO category VALUES(1, 'Clothes','All wearable fabrics, including cloths worn by all age groups and all sexes of humanity.');
@@ -18,14 +17,30 @@ INSERT INTO products VALUES(1,'Dragon Jacket','Made from the skin of one of the 
 INSERT INTO products VALUES(2,'Relax Watch','It is a hand watch, and by wearing it you are bound to feel realaxed',210, 10, 10, 2 );
 
 Wrong_Query
-{"product_id":2, "product_name":"E-watch", "product_description":"Solar powered watch","price":400,"discount":20, "available_quantity":12,"category_id":2 }
+{'product_id':2, 'product_name':'E-watch', 'product_description':'Solar powered watch','price':400,'discount':20, 'available_quantity':12,'category_id':2 }
 
 Right_Query
-{"product_id":3, "product_name":"E-watch", "product_description":"Solar powered watch","price":400,"discount":20, "available_quantity":12,"category_id":2 }
+{'product_id':3, 'product_name':'E-watch', 'product_description':'Solar powered watch','price':400,'discount':20, 'available_quantity':12,'category_id':2 }
 
-{"product_id":4, "product_name":"Sweet Shirt", "product_description":"A shirt with smeel of sugar","price":344,"discount":40, "available_quantity":2,"category_id":1 }
+{'product_id':4, 'product_name':'Sweet Shirt', 'product_description':'A shirt with smeel of sugar','price':344,'discount':40, 'available_quantity':2,'category_id':1 }
 
-{"product_id":4, "product_name":"Dummy Shirt", "product_description":"A shirt with smeel of sugar","price":344,"discount":40, "available_quantity":2,"category_id":1 }
+{'product_id':4, 'product_name':'Dummy Shirt', 'product_description':'A shirt with smeel of sugar','price':344,'discount':40, 'available_quantity':2,'category_id':1 }
 
-"eyJwcm9kdWN0X2lkIjoxLCJwcm9kdWN0X25hbWUiOiJEcmFnb24gSmFja2V0IiwicHJvZHVjdF9kZXNjcmlwdGlvbiI6Ik1hZGUgZnJvbSB0aGUgc2tpbiBvZiBvbmUgb2YgdGhlIGRyYWdvbnMgZnJvbSBHT1QsIGZvciBVTklTRVgiLCJwcmljZSI6NTExLCJkaXNjb3VudCI6NDAsImF2YWlsYWJsZV9xdWFudGl0eSI6NSwiY2F0ZWdvcnlfaWQiOjF9"
-"eyJwcm9kdWN0X2lkIjoyLCJwcm9kdWN0X25hbWUiOiJSZWxheCBXYXRjaCIsInByb2R1Y3RfZGVzY3JpcHRpb24iOiJJdCBpcyBhIGhhbmQgd2F0Y2gsIGFuZCBieSB3ZWFyaW5nIGl0IHlvdSBhcmUgYm91bmQgdG8gZmVlbCByZWFsYXhlZCIsInByaWNlIjoyMTAsImRpc2NvdW50IjoxMCwiYXZhaWxhYmxlX3F1YW50aXR5IjoxMCwiY2F0ZWdvcnlfaWQiOjJ9"
+INSERT INTO productimages VALUES(1,'jacket1.jpg', 'Front View' );
+INSERT INTO productimages VALUES(1,'jacket2.jpg', 'Right Back View' );
+INSERT INTO productimages VALUES(1,'jacket3.jpg', 'Left Back View' );
+
+INSERT INTO productimages VALUES(2,'watch1.jpg', 'Open Belt View' );
+INSERT INTO productimages VALUES(2,'watch2.jpg', 'Folded Belt View' );
+INSERT INTO productimages VALUES(2,'watch3.jpg', 'Closer View' );
+
+INSERT INTO productimages VALUES(3,'LED1.jpg', 'Left View' );
+INSERT INTO productimages VALUES(3,'LED2.jpg', 'Right View' );
+
+INSERT INTO productimages VALUES(4,'sweet1.jpg', 'Front View' );
+INSERT INTO productimages VALUES(4,'sweet2.jpg', 'Back View' );
+
+
+ALTER TABLE pro DROP CONSTRAINT FOREIGN KEY;
+
+

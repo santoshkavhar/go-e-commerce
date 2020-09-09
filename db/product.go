@@ -18,6 +18,8 @@ const (
 		name, description, price, discount, quantity, category_id
 			) =  ($1, $2, $3, $4, $5, $6) where id = $7`
 	deleteProductIdQuery = `DELETE FROM products WHERE id = $1`
+
+	//getCategoryByID = `SELECT * FROM category WHERE id = $1`
 )
 
 type Product struct {
@@ -71,29 +73,38 @@ func (product *Product) Validate() (errorResponse map[string]ErrorResponse, vali
 	return
 }
 
-func (s *pgStore) ListProducts(ctx context.Context) (products []Product, err error) {
-	err = s.db.Select(&products, getProductQuery)
+func (s *pgStore) GetProductByID(ctx context.Context, Id int) (product Product, err error) {
+	err = s.db.Get(&product, getProductByIDQuery, Id)
+
 	if err != nil {
-		logger.WithField("err", err.Error()).Error("Error Listing Products")
+		logger.WithField("err", err.Error()).Error("Error selecting product from database by id " + string(Id))
 		return
 	}
 
 	return
 }
 
-func (s *pgStore) GetProductById(ctx context.Context, Id int) (product Product, err error) {
+/*
+func (s *pgStore) GetProductByIdWithCategory(ctx context.Context, Id int) (product Product, category Category,  err error) {
 	err = s.db.Get(&product, getProductByIDQuery, Id)
 	if err != nil {
 		logger.WithField("err", err.Error()).Error("Error selecting product from database by id " + string(Id))
 		return
 	}
+
+	err = s.db.Get(&category, getCategoryByID, Id)
+	if err != nil {
+		logger.WithField("err", err.Error()).Error("Error selecting category from database by id " + string(Id))
+		return
+	}
 	return
 }
+*/
 
 // CreateNewProduct
 func (s *pgStore) CreateNewProduct(ctx context.Context, p Product) (createdProduct Product, err error) {
 	// First, make sure Product isn't already in db, if Product is present, just return the it
-	createdProduct, err = s.GetProductById(ctx, p.Id)
+	createdProduct, err = s.GetProductByID(ctx, p.Id)
 	if err == nil {
 		// If there's already a product, err wil be nil, so no new Product is populated.
 		err = fmt.Errorf("Product Already exists!")
@@ -122,7 +133,7 @@ func (s *pgStore) CreateNewProduct(ctx context.Context, p Product) (createdProdu
 	}
 
 	// Re-select Product and return it
-	createdProduct, err = s.GetProductById(ctx, p.Id)
+	createdProduct, err = s.GetProductByID(ctx, p.Id)
 	if err != nil {
 		logger.WithField("err", err.Error()).Error("Error selecting from database with id: " + string(p.Id))
 		return
@@ -130,7 +141,7 @@ func (s *pgStore) CreateNewProduct(ctx context.Context, p Product) (createdProdu
 	return
 }
 
-func (s *pgStore) UpdateProductById(ctx context.Context, product Product, Id int) (updatedProduct Product, err error) {
+func (s *pgStore) UpdateProductById(ctx context.Context, product Product, Id int) (updatedcp CompleteProduct, err error) {
 
 	var dbProduct Product
 	err = s.db.Get(&dbProduct, getProductByIDQuery, Id)
@@ -168,7 +179,7 @@ func (s *pgStore) UpdateProductById(ctx context.Context, product Product, Id int
 		return
 	}
 
-	err = s.db.Get(&updatedProduct, getProductByIDQuery, Id)
+	updatedcp, err = s.GetCompleteProductByID(ctx, Id)
 	if err != nil {
 		logger.WithField("err", err.Error()).Error("Error while getting updated product ")
 		return
@@ -178,10 +189,15 @@ func (s *pgStore) UpdateProductById(ctx context.Context, product Product, Id int
 
 func (s *pgStore) DeleteProductById(ctx context.Context, Id int) (err error) {
 
-	_, err = s.db.Exec(deleteProductIdQuery, Id)
+	rows, err := s.db.Exec(deleteProductIdQuery, Id)
 	if err != nil {
 		logger.WithField("err", err.Error()).Error("Error deleting product" + string(Id))
 		return
+	}
+
+	rows_affected, err := rows.RowsAffected()
+	if rows_affected == 0 {
+		err = fmt.Errorf("Product doesn't exist in db, goodluck deleting it")
 	}
 	return
 }

@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "54133487-a585-48f4-8274-c51f55095ce6",
+		"name": "E-commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:33001/products",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.e-commerce.v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Santosh\", \"email\":\"Santosh@gmil.com\",\"password\":\"newpassword\"}"
+				},
+				"url": {
+					"raw": "localhost:33001/products",
+					"host": [
+						"localhost"
+					],
+					"port": "33001",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:33001/users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.e-commerce.v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Santosh\", \"email\":\"Santosh@gmil.com\",\"password\":\"newpassword\"}"
+				},
+				"url": {
+					"raw": "localhost:33001/users",
+					"host": [
+						"localhost"
+					],
+					"port": "33001",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:33001/createProduct",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.e-commerce.v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"product_id\":5, \"product_name\":\"Dummy Shirt\", \"product_description\":\"A shirt with smell of sugar\",\"price\":344,\"discount\":40, \"available_quantity\":2,\"category_id\":1 }"
+				},
+				"url": {
+					"raw": "localhost:33001/product/",
+					"host": [
+						"localhost"
+					],
+					"port": "33001",
+					"path": [
+						"product",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:33001/product/2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.e-commerce.v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Santosh\", \"email\":\"Santosh@gmil.com\",\"password\":\"newpassword\"}"
+				},
+				"url": {
+					"raw": "localhost:33001/product/2",
+					"host": [
+						"localhost"
+					],
+					"port": "33001",
+					"path": [
+						"product",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:33001/product/5",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.e-commerce.v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"product_id\":5, \"product_name\":\"Updated Sweet Shirt\", \"product_description\":\"A shirt with smell of sugar\",\"price\":384,\"discount\":50, \"available_quantity\":6,\"category_id\":1 }\n"
+				},
+				"url": {
+					"raw": "localhost:33001/product/5",
+					"host": [
+						"localhost"
+					],
+					"port": "33001",
+					"path": [
+						"product",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:33001/product/5",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.e-commerce.v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:33001/product/5",
+					"host": [
+						"localhost"
+					],
+					"port": "33001",
+					"path": [
+						"product",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

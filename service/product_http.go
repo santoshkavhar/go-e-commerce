@@ -11,16 +11,16 @@ import (
 	logger "github.com/sirupsen/logrus"
 )
 
-// @Title listCompleteProducts
+// @Title listProducts
 // @Description list all Products
 // @Router /products [GET]
 // @Accept	json
 // @Success 200 {object}
 // @Failure 400 {object}
-func listCompleteProductsHandler(deps Dependencies) http.HandlerFunc {
+func listProductsHandler(deps Dependencies) http.HandlerFunc {
 	return http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 
-		products, err := deps.Store.ListCompleteProducts(req.Context())
+		products, err := deps.Store.ListProducts(req.Context())
 		if err != nil {
 			logger.WithField("err", err.Error()).Error("Error fetching data")
 			rw.WriteHeader(http.StatusInternalServerError)
@@ -102,7 +102,7 @@ func createProductHandler(deps Dependencies) http.HandlerFunc {
 // @ Success 200 {object}
 // @ Failure 400 {object}
 
-func getCompleteProductByIdHandler(deps Dependencies) http.HandlerFunc {
+func getProductByIdHandler(deps Dependencies) http.HandlerFunc {
 	return http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 
 		vars := mux.Vars(req)
@@ -118,7 +118,7 @@ func getCompleteProductByIdHandler(deps Dependencies) http.HandlerFunc {
 			return
 		}
 
-		completeProduct, err := deps.Store.GetCompleteProductByID(req.Context(), id)
+		product, err := deps.Store.GetProductByID(req.Context(), id)
 		if err != nil {
 			rw.WriteHeader(http.StatusInternalServerError)
 			logger.WithField("err", err.Error()).Error("Error fetching data")
@@ -130,7 +130,7 @@ func getCompleteProductByIdHandler(deps Dependencies) http.HandlerFunc {
 			return
 		}
 
-		_, err = json.Marshal(completeProduct)
+		_, err = json.Marshal(product)
 		if err != nil {
 			rw.WriteHeader(http.StatusInternalServerError)
 			logger.WithField("err", err.Error()).Error("Error marshaling products data")
@@ -141,7 +141,7 @@ func getCompleteProductByIdHandler(deps Dependencies) http.HandlerFunc {
 			})
 			return
 		}
-		response(rw, http.StatusOK, completeProduct)
+		response(rw, http.StatusOK, product)
 		return
 	})
 }
@@ -242,7 +242,7 @@ func updateProductByIdHandler(deps Dependencies) http.HandlerFunc {
 			return
 		}
 
-		var updatedProduct db.CompleteProduct
+		var updatedProduct db.Product
 		updatedProduct, err = deps.Store.UpdateProductById(req.Context(), product, id)
 		if err != nil {
 			rw.WriteHeader(http.StatusInternalServerError)

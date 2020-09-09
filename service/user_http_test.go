@@ -2,9 +2,9 @@ package service
 
 import (
 	"errors"
-	"santoshkavhar/go-e-commerce/db"
 	"net/http"
 	"net/http/httptest"
+	"santoshkavhar/go-e-commerce/db"
 	"strings"
 	"testing"
 

@@ -24,3 +24,8 @@ Right_Query
 {"product_id":3, "product_name":"E-watch", "product_description":"Solar powered watch","price":400,"discount":20, "available_quantity":12,"category_id":2 }
 
 {"product_id":4, "product_name":"Sweet Shirt", "product_description":"A shirt with smeel of sugar","price":344,"discount":40, "available_quantity":2,"category_id":1 }
+
+{"product_id":4, "product_name":"Dummy Shirt", "product_description":"A shirt with smeel of sugar","price":344,"discount":40, "available_quantity":2,"category_id":1 }
+
+"eyJwcm9kdWN0X2lkIjoxLCJwcm9kdWN0X25hbWUiOiJEcmFnb24gSmFja2V0IiwicHJvZHVjdF9kZXNjcmlwdGlvbiI6Ik1hZGUgZnJvbSB0aGUgc2tpbiBvZiBvbmUgb2YgdGhlIGRyYWdvbnMgZnJvbSBHT1QsIGZvciBVTklTRVgiLCJwcmljZSI6NTExLCJkaXNjb3VudCI6NDAsImF2YWlsYWJsZV9xdWFudGl0eSI6NSwiY2F0ZWdvcnlfaWQiOjF9"
+"eyJwcm9kdWN0X2lkIjoyLCJwcm9kdWN0X25hbWUiOiJSZWxheCBXYXRjaCIsInByb2R1Y3RfZGVzY3JpcHRpb24iOiJJdCBpcyBhIGhhbmQgd2F0Y2gsIGFuZCBieSB3ZWFyaW5nIGl0IHlvdSBhcmUgYm91bmQgdG8gZmVlbCByZWFsYXhlZCIsInByaWNlIjoyMTAsImRpc2NvdW50IjoxMCwiYXZhaWxhYmxlX3F1YW50aXR5IjoxMCwiY2F0ZWdvcnlfaWQiOjJ9"

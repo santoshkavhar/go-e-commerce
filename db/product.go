@@ -30,8 +30,8 @@ type Product struct {
 	Discount     float32  `db:"discount" json:"discount"`
 	Quantity     int      `db:"quantity" json:"available_quantity"`
 	CategoryId   int      `db:"category_id" json:"category_id"`
-	CategoryName string   `json:"category_name"`
-	URLs         []string `json:"productimage_urls"`
+	CategoryName string   `json:"category_name,omitempty"`
+	URLs         []string `json:"productimage_urls,omitempty"`
 }
 
 func (product *Product) Validate() (errorResponse map[string]ErrorResponse, valid bool) {

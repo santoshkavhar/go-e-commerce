@@ -14,7 +14,7 @@ INSERT INTO category VALUES(2,'Electronics','Anything that consumes or stores or
 
 INSERT INTO products VALUES(1,'Dragon Jacket','Made from the skin of one of the dragons from GOT, for UNISEX',511, 40, 5, 1 );
 
-INSERT INTO products VALUES(2,'Relax Watch','It is a hand watch, and by wearing it you are bound to feel realaxed',210, 10, 10, 2 );
+INSERT INTO products VALUES(2,'Relax Watch','It is a hand watch, and by wearing it you are bound to feel relaxed',210, 10, 10, 2 );
 
 Wrong_Query
 {'product_id':2, 'product_name':'E-watch', 'product_description':'Solar powered watch','price':400,'discount':20, 'available_quantity':12,'category_id':2 }
@@ -44,3 +44,8 @@ INSERT INTO productimages VALUES(4,'sweet2.jpg', 'Back View' );
 ALTER TABLE pro DROP CONSTRAINT FOREIGN KEY;
 
 
+INSERT INTO category (SELECT * FROM Commerce.category)
+
+INSERT INTO products (SELECT * FROM Commerce.products)
+
+INSERT INTO productimages (SELECT * FROM Commerce.productimages)

@@ -16,15 +16,17 @@ INSERT INTO products VALUES(1,'Dragon Jacket','Made from the skin of one of the 
 
 INSERT INTO products VALUES(2,'Relax Watch','It is a hand watch, and by wearing it you are bound to feel relaxed',210, 10, 10, 2 );
 
+
+Note : It has to be double quotes only
 Wrong_Query
-{'product_id':2, 'product_name':'E-watch', 'product_description':'Solar powered watch','price':400,'discount':20, 'available_quantity':12,'category_id':2 }
+{"product_id":2, "product_name":"E-watch", "product_description":"Solar powered watch","price":400,"discount":20, "available_quantity":12,"category_id":2 }
 
 Right_Query
-{'product_id':3, 'product_name':'E-watch', 'product_description':'Solar powered watch','price':400,'discount':20, 'available_quantity':12,'category_id':2 }
+{"product_id":3, "product_name":"E-watch", "product_description":"Solar powered watch","price":400,"discount":20, "available_quantity":12,"category_id":2, "category_name": "Clothes","productimage_urls":[] }
 
-{'product_id':4, 'product_name':'Sweet Shirt', 'product_description':'A shirt with smeel of sugar','price':344,'discount':40, 'available_quantity':2,'category_id':1 }
+{"product_id":4, "product_name":"Sweet Shirt", "product_description":"A shirt with smeel of sugar","price":344,"discount":40, "available_quantity":2,"category_id":1 }
 
-{'product_id':4, 'product_name':'Dummy Shirt', 'product_description':'A shirt with smeel of sugar','price':344,'discount':40, 'available_quantity':2,'category_id':1 }
+{"product_id":4, "product_name":"Dummy Shirt", "product_description":"A shirt with smeel of sugar","price":344,"discount":40, "available_quantity":2,"category_id":1 }
 
 INSERT INTO productimages VALUES(1,'jacket1.jpg', 'Front View' );
 INSERT INTO productimages VALUES(1,'jacket2.jpg', 'Right Back View' );
